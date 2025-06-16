@@ -1,7 +1,10 @@
-import { defineConfig } from 'drizzle-kit'
+import * as dotenv from 'dotenv';
+dotenv.config();
+
+import { defineConfig } from 'drizzle-kit';
 
 if (!process.env.DATABASE_URL) {
-  throw new Error('DATABASE_URL must be configured.')
+  throw new Error('DATABASE_URL must be configured.');
 }
 
 export default defineConfig({
@@ -9,7 +12,7 @@ export default defineConfig({
   dbCredentials: {
     url: process.env.DATABASE_URL,
   },
-  schema: 'src/db/schema/*',
+  schema: 'src/db/schema/**',
   out: 'src/db/migrations',
   casing: 'snake_case',
-})
+});
